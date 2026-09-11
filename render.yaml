@@ -1,0 +1,41 @@
+services:
+  # Backend FastAPI Service
+  - type: web
+    name: aivoa-pharmacy-backend
+    env: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false          # Set manually in Render dashboard
+      - key: DATABASE_URL
+        fromDatabase:
+          name: aivoa-pharmacy-db
+          property: connectionString
+      - key: APP_ENV
+        value: production
+      - key: CORS_ORIGINS
+        value: https://aivoa-pharmacy-frontend.onrender.com
+      - key: PRIMARY_MODEL
+        value: gemma2-9b-it
+      - key: FALLBACK_MODEL
+        value: llama-3.3-70b-versatile
+
+  # Frontend Static Site
+  - type: web
+    name: aivoa-pharmacy-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://aivoa-pharmacy-backend.onrender.com
+
+  # PostgreSQL Database
+databases:
+  - name: aivoa-pharmacy-db
+    plan: free
+    databaseName: pharmacy_complaints

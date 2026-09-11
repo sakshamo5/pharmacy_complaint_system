@@ -1,0 +1,469 @@
+/* AICopilotPanel.module.css */
+
+.copilotPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1.5px solid var(--border-light);
+  flex-shrink: 0;
+  background: var(--surface);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aiIconWrap {
+  width: 32px;
+  height: 32px;
+  background: var(--ai-gradient);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.headerTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.betaBadge {
+  background: var(--ai-purple-50);
+  color: var(--ai-purple);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ── Scrollable body ─────────────────────────────────────────────────────────── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Drop Zone ──────────────────────────────────────────────────────────────── */
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  background: var(--surface-alt);
+}
+
+.dropzone:hover {
+  border-color: var(--primary-light);
+  background: var(--primary-50);
+}
+
+.dropzoneActive {
+  border-color: var(--primary);
+  background: var(--primary-50);
+  transform: scale(1.01);
+}
+
+.dropzoneDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropzoneIcon {
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.dropzoneText {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 3px;
+}
+
+.dropzoneLink {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.clickLink {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ── OR Divider ─────────────────────────────────────────────────────────────── */
+.orDivider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.orLine {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.orText {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── Paste Button ───────────────────────────────────────────────────────────── */
+.pasteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.pasteBtn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+/* ── Formats Info ───────────────────────────────────────────────────────────── */
+.formatsInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.73rem;
+  color: var(--success);
+  background: var(--success-light);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+/* ── Progress Bar ───────────────────────────────────────────────────────────── */
+.progressWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--ai-gradient);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+  animation: progress-glow 2s infinite;
+}
+
+.progressPct {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ── Duplicate Warning ──────────────────────────────────────────────────────── */
+.warningBanner {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  color: #92400E;
+  line-height: 1.4;
+}
+
+/* ── Tool Badge ─────────────────────────────────────────────────────────────── */
+.toolBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--ai-purple-50);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ai-purple);
+  align-self: flex-start;
+}
+
+.toolDot {
+  width: 6px;
+  height: 6px;
+  background: var(--ai-purple);
+  border-radius: 50%;
+  animation: bounce-dot 1.2s infinite;
+}
+
+/* ── Assistant Label ────────────────────────────────────────────────────────── */
+.assistantLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Messages ───────────────────────────────────────────────────────────────── */
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.userMessage {
+  flex-direction: row-reverse;
+}
+
+.aiAvatar {
+  width: 26px;
+  height: 26px;
+  background: var(--ai-gradient);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.aiBubble {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  color: var(--text-primary);
+  border-top-left-radius: 4px;
+}
+
+.userBubble {
+  background: var(--primary);
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+.errorBubble {
+  background: var(--danger-light);
+  border-color: rgba(220, 38, 38, 0.2);
+  color: var(--danger);
+}
+
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 20px;
+}
+
+.thinkingText {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.bubbleText {
+  white-space: pre-wrap;
+}
+
+/* ── Input Row ──────────────────────────────────────────────────────────────── */
+.inputRow {
+  display: flex;
+  gap: 8px;
+  padding: 12px 18px 8px;
+  border-top: 1.5px solid var(--border-light);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--surface-alt);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.chatInput:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.sendBtn {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  padding: 0 18px 10px;
+  flex-shrink: 0;
+}
+
+/* ── Paste Modal ────────────────────────────────────────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  width: min(560px, 92vw);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modalSub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: -8px;
+}
+
+.modalTextarea {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 200px;
+  font-family: inherit;
+  line-height: 1.6;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.modalTextarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btnCancel {
+  padding: 9px 20px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btnCancel:hover { background: var(--surface-hover); }
+
+.btnSubmitPaste {
+  padding: 9px 22px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.btnSubmitPaste:hover:not(:disabled) {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}

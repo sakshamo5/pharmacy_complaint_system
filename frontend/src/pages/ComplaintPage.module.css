@@ -1,0 +1,27 @@
+/* ComplaintPage.module.css */
+.page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 16px;
+  padding: 16px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.leftPanel,
+.rightPanel {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

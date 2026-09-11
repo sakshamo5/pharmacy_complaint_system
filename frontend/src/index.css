@@ -1,0 +1,287 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   AIVOA Design System
+   Global CSS variables, reset, typography, and utility classes.
+   Pharmaceutical-grade professional UI: clean whites + deep blues + purple AI accents
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Google Inter Font ─────────────────────────────────────────────────────── */
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── CSS Design Tokens ──────────────────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-dark: #1D4ED8;
+  --primary-50: #EFF6FF;
+  --primary-100: #DBEAFE;
+
+  /* AI / Copilot Purple Accent */
+  --ai-purple: #7C3AED;
+  --ai-purple-light: #8B5CF6;
+  --ai-purple-50: #F5F3FF;
+  --ai-gradient: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+
+  /* Surfaces */
+  --surface: #FFFFFF;
+  --surface-alt: #F8FAFC;
+  --surface-hover: #F1F5F9;
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+
+  /* Text */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-placeholder: #CBD5E1;
+
+  /* Status Colors */
+  --success: #059669;
+  --success-light: #D1FAE5;
+  --warning: #D97706;
+  --warning-light: #FEF3C7;
+  --danger: #DC2626;
+  --danger-light: #FEE2E2;
+  --info: #0284C7;
+  --info-light: #E0F2FE;
+
+  /* Severity Colors */
+  --severity-critical: #DC2626;
+  --severity-critical-bg: #FEF2F2;
+  --severity-major: #D97706;
+  --severity-major-bg: #FFFBEB;
+  --severity-minor: #059669;
+  --severity-minor-bg: #F0FDF4;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.07);
+  --shadow-ai: 0 0 0 1px rgba(124, 58, 237, 0.2), 0 4px 20px rgba(124, 58, 237, 0.15);
+
+  /* Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #F0F4F8;
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+/* ── Scrollbar Styling ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Form Elements ──────────────────────────────────────────────────────────── */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  width: 100%;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input[readonly], textarea[readonly] {
+  background: var(--surface-alt);
+  cursor: not-allowed;
+}
+
+/* ── Button Base ────────────────────────────────────────────────────────────── */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+
+/* Shimmer/pulse on empty form fields while AI is extracting */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.field-extracting input,
+.field-extracting textarea,
+.field-extracting select {
+  background: linear-gradient(
+    90deg,
+    var(--surface-alt) 0%,
+    var(--primary-100) 50%,
+    var(--surface-alt) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+  border-color: var(--primary-light);
+}
+
+/* Field fill animation — scale in when AI populates */
+@keyframes field-fill {
+  0% { transform: scale(0.99); background-color: var(--primary-50); }
+  100% { transform: scale(1); background-color: var(--surface); }
+}
+
+.field-filled input,
+.field-filled textarea,
+.field-filled select {
+  animation: field-fill 0.5s ease forwards;
+  border-color: var(--primary-light);
+}
+
+/* Typing dots */
+@keyframes bounce-dot {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--ai-purple);
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce-dot 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Progress bar animation */
+@keyframes progress-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.4); }
+  50% { box-shadow: 0 0 16px rgba(124, 58, 237, 0.6); }
+}
+
+/* Slide-in for chat messages */
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message-enter {
+  animation: slide-in-up 0.3s ease;
+}
+
+/* Fade in for risk assessment panel */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease;
+}
+
+/* ── Utility Classes ─────────────────────────────────────────────────────────── */
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+.text-sm { font-size: 0.8125rem; }
+.text-xs { font-size: 0.75rem; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+
+/* Severity badge utility */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-critical {
+  background: var(--severity-critical-bg);
+  color: var(--severity-critical);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.badge-major {
+  background: var(--severity-major-bg);
+  color: var(--severity-major);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.badge-minor {
+  background: var(--severity-minor-bg);
+  color: var(--severity-minor);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.badge-pending {
+  background: var(--warning-light);
+  color: var(--warning);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+}
