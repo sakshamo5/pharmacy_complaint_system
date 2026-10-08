@@ -147,11 +147,3 @@ MAX_FILE_SIZE_MB=10
 DATE_TOLERANCE_DAYS=7
 APP_ENV=development
 ```
-
----
-
-## Deliverables for the assignment
-- **GitHub repository** (this repo)
-- **Two demo videos**: (1) working demo of all AI tools + frontend features,
-  (2) end-to-end code walkthrough (frontend input → API → LangGraph nodes →
-  response populating Log Customer Complaint form + AI Copilot risk panel)
