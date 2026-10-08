@@ -1,4 +1,4 @@
-# AIVOA – AI-Powered Customer Complaint Management System
+# AI-Powered Customer Complaint Management System
 ### Pharmaceutical QMS | Round 1 AI Product Engineer Assignment
 
 ---
