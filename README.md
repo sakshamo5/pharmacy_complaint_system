@@ -1,5 +1,5 @@
 # AI-Powered Customer Complaint Management System
-### Pharmaceutical QMS | Round 1 AI Product Engineer Assignment
+### Pharmaceutical QMS 
 
 ---
 
@@ -15,28 +15,6 @@
 
 ---
 
-## LLM Model Note (important)
-
-The assignment specifies **Groq `gemma2-9b-it`** (and optionally `llama-3.3-70b-versatile`).
-As of submission, **both models are no longer available on Groq**:
-
-- `gemma2-9b-it` → *decommissioned* (HTTP 400, model_decommissioned)
-- `llama-3.3-70b-versatile` → *removed / no access* (HTTP 404, model_not_found)
-
-Verified live via `groq.models.list()` — accessible models are the OpenAI-preview
-family (`openai/gpt-oss-20b`, `openai/gpt-oss-120b`) and Qwen 3.x.
-
-The project therefore defaults to **`openai/gpt-oss-20b`** with
-**`openai/gpt-oss-120b`** as an automatic fallback if the primary fails
-(rate limit, 5xx, model rotation). Both are fully configurable via
-`PRIMARY_MODEL` / `FALLBACK_MODEL` in `backend/.env`, so pointing back at any
-Groq model (including a future `gemma` re-release) is a one-line change.
-
-Structured outputs are kept deterministic: `temperature=0.0` + a strict ICH Q9
-rubric for risk assessment, a static completeness checker, and a deterministic
-(rule-based) duplicate detector — no floating retrieval similarity.
-
----
 
 ## Quick Start
 
